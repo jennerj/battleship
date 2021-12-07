@@ -25,9 +25,20 @@ RSpec.describe Ship do
     expect(@cruiser.sunk?).to be false
   end
 
-  it 'gets hit and looses a health' do
+  it 'gets hit and loses a health' do
     expect(@cruiser.health).to eq(3)
     @cruiser.hit
     expect(@cruiser.health).to eq(2)
+  end
+
+  it 'gets sunk when health is at zero' do
+    expect(@cruiser.health).to eq(3)
+    @cruiser.hit
+    expect(@cruiser.health).to eq(2)
+    @cruiser.hit
+    expect(@cruiser.health).to eq(1)
+    @cruiser.hit
+    expect(@cruiser.health).to eq(0)
+    expect(@cruiser.sunk?).to be true
   end
 end
