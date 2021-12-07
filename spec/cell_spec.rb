@@ -30,7 +30,19 @@ RSpec.describe Cell do
   it '#place_ship' do
     @cell.place_ship(@cruiser)
     expect(@cell.ship).to eq(@cruiser)
-    expect(@cell.empty?).to eq false
+    expect(@cell.empty?).to be false
+  end
+
+  it 'starts as fired upon' do
+    @cell.place_ship(@cruiser)
+    expect(@cell.fired_upon?).to be false
+  end
+
+  it 'gets fired upon' do
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    expect(@cell.ship.health).to eq(2)
+    expect(@cell.fired_upon?).to be true
   end
 
 end
