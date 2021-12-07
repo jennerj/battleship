@@ -4,6 +4,12 @@ class Cell
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = ship
+    @empty = true
   end
+
+  def empty?
+    @empty
+  end
+
 
 end

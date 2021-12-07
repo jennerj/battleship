@@ -10,8 +10,16 @@ RSpec.describe Cell do
     expect(@cell).to be_an_instance_of(Cell)
   end
 
-  it "can have a ship" do
+  it 'can have a coordinate' do
     expect(@cell.coordinate).to eq("B4")
+  end
+
+  it 'can have a ship' do
+    expect(@cell.ship).to eq(nil)
+  end
+
+  it 'starts empty' do
+    expect(@cell.empty?).to be true
   end
 
 end
