@@ -24,4 +24,10 @@ RSpec.describe Ship do
   it 'is not sunk by default' do
     expect(@cruiser.sunk?).to be false
   end
+
+  it 'gets hit and looses a health' do
+    expect(@cruiser.health).to eq(3)
+    @cruiser.hit
+    expect(@cruiser.health).to eq(2)
+  end
 end
