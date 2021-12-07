@@ -10,7 +10,10 @@ RSpec.describe Ship do
   end
 
   it 'has a name' do
-    crusier = Ship.new('Cruiser', 3)
     expect(@cruiser.name).to eq('Cruiser')
+  end
+
+  it 'has length' do
+    expect(@cruiser.length).to eq(3)
   end
 end
