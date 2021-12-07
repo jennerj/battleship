@@ -9,7 +9,11 @@ class Cell
   end
 
   def empty?
-    @ship == nil
+    if @ship == nil
+      true
+    else
+      false
+    end
   end
 
   def place_ship(ship)
@@ -18,6 +22,9 @@ class Cell
 
   def fired_upon?
     @fired_upon
+  end
+
+  def fire_upon
   end
 
 end
