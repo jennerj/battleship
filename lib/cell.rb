@@ -29,9 +29,12 @@ class Cell
     @fired_upon = true
   end
 
-  def render
+  def render(reveal = false)
     if @fired_upon
       'M'
+    elsif ship && reveal
+      'S'
+
     else
       '.'
     end

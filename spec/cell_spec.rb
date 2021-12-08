@@ -64,4 +64,12 @@ RSpec.describe Cell do
 
     expect(cell.render).to eq('.')
   end
+
+  it 'has S if unhit with a ship and the reveal code' do
+    cell = Cell.new('B4')
+    cruiser = Ship.new('cruiser', 3)
+    cell.place_ship(cruiser)
+
+    expect(cell.render(true)).to eq('S')
+  end
 end
