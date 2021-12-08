@@ -22,4 +22,10 @@ class Board
 }
   end
 
+  def valid_coordinate?(coord)
+    @cells.keys.any? do |key|
+      key == coord
+    end
+  end
+
 end
