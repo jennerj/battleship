@@ -30,7 +30,9 @@ class Cell
   end
 
   def render(reveal = false)
-    if @fired_upon
+    if ship && @fired_upon
+      'H'
+    elsif @fired_upon
       'M'
     elsif ship && reveal
       'S'
