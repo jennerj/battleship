@@ -49,4 +49,11 @@ RSpec.describe Cell do
     cell = Cell.new('B4')
     expect(cell.render).to eq('.')
   end
+
+  it 'has an M for a miss if empty' do
+    cell = Cell.new('B4')
+    expect(cell.render).to eq('.')
+    cell.fire_upon
+    expect(cell.render).to eq('M')
+  end
 end

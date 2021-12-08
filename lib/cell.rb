@@ -30,6 +30,10 @@ class Cell
   end
 
   def render
-    '.'
+    if @fired_upon
+      'M'
+    else
+      '.'
+    end
   end
 end
