@@ -3,8 +3,8 @@ require './lib/cell'
 
 RSpec.describe Cell do
   before(:each) do
-    @cell = Cell.new("B4")
-    @cruiser = Ship.new("Cruiser", 3)
+    @cell = Cell.new('B4')
+    @cruiser = Ship.new('Cruiser', 3)
   end
 
   it 'is a cell' do
@@ -12,7 +12,7 @@ RSpec.describe Cell do
   end
 
   it 'can have a coordinate' do
-    expect(@cell.coordinate).to eq("B4")
+    expect(@cell.coordinate).to eq('B4')
   end
 
   it 'can have a ship' do
@@ -45,4 +45,8 @@ RSpec.describe Cell do
     expect(@cell.fired_upon?).to be true
   end
 
+  it 'has a . if its unhit and empty' do
+    cell = Cell.new('B4')
+    expect(cell.render).to eq('.')
+  end
 end

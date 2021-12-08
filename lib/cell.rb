@@ -9,7 +9,7 @@ class Cell
   end
 
   def empty?
-    if @ship == nil
+    if @ship.nil?
       true
     else
       false
@@ -25,10 +25,11 @@ class Cell
   end
 
   def fire_upon
-    if empty? != true
-      @ship.hit
-    end
+    @ship.hit if empty? != true
     @fired_upon = true
   end
 
+  def render
+    '.'
+  end
 end
