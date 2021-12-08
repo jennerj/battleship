@@ -73,11 +73,22 @@ RSpec.describe Cell do
     expect(cell.render(true)).to eq('S')
   end
 
-  it 'shows an H for a hit cell with a ship' do
+  it 'has H if hit and has ship' do
     cell = Cell.new('B4')
     cruiser = Ship.new('cruiser', 3)
     cell.place_ship(cruiser)
     cell.fire_upon
     expect(cell.render(true)).to eq('H')
+  end
+
+  it 'shows an X for a sunken ship' do
+    cell = Cell.new('B4')
+    cruiser = Ship.new('cruiser', 3)
+    cell.place_ship(cruiser)
+    cell.fire_upon
+    cruiser.hit
+    expect(cell.render(true)).to eq('H')
+    cruiser.hit
+    expect(cell.render(true)).to eq('X')
   end
 end

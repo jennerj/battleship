@@ -30,13 +30,14 @@ class Cell
   end
 
   def render(reveal = false)
-    if ship && @fired_upon
+    if ship && ship.sunk?
+      'X'
+    elsif ship && @fired_upon
       'H'
     elsif @fired_upon
       'M'
     elsif ship && reveal
       'S'
-
     else
       '.'
     end
