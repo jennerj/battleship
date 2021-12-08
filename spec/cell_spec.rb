@@ -46,37 +46,37 @@ RSpec.describe Cell do
   end
 
   it 'has a . if its unhit and empty' do
-    expect(cell.render).to eq('.')
+    expect(@cell.render).to eq('.')
   end
 
   it 'has an M for a miss if empty' do
-    expect(cell.render).to eq('.')
-    cell.fire_upon
-    expect(cell.render).to eq('M')
+    expect(@cell.render).to eq('.')
+    @cell.fire_upon
+    expect(@cell.render).to eq('M')
   end
 
   it 'has a . if not hit and with a ship' do
-    cell.place_ship(cruiser)
-    expect(cell.render).to eq('.')
+    @cell.place_ship(@cruiser)
+    expect(@cell.render).to eq('.')
   end
 
   it 'has S if not hit with a ship and the reveal code' do
-    cell.place_ship(cruiser)
-    expect(cell.render(true)).to eq('S')
+    @cell.place_ship(@cruiser)
+    expect(@cell.render(true)).to eq('S')
   end
 
   it 'has H if hit and has ship' do
-    cell.place_ship(cruiser)
-    cell.fire_upon
-    expect(cell.render(true)).to eq('H')
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    expect(@cell.render(true)).to eq('H')
   end
 
   it 'shows an X for a sunken ship' do
-    cell.place_ship(cruiser)
-    cell.fire_upon
-    cruiser.hit
-    expect(cell.render(true)).to eq('H')
-    cruiser.hit
-    expect(cell.render(true)).to eq('X')
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    @cruiser.hit
+    expect(@cell.render(true)).to eq('H')
+    @cruiser.hit
+    expect(@cell.render(true)).to eq('X')
   end
 end
