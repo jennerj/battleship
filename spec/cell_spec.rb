@@ -56,4 +56,12 @@ RSpec.describe Cell do
     cell.fire_upon
     expect(cell.render).to eq('M')
   end
+
+  it 'has a . if unhit and with a ship' do
+    cell = Cell.new('B4')
+    cruiser = Ship.new('cruiser', 3)
+    cell.place_ship(cruiser)
+
+    expect(cell.render).to eq('.')
+  end
 end
