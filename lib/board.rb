@@ -22,12 +22,29 @@ class Board
 }
   end
 
-  def valid_coordinate?(coord)
-    @cells.include?(coord)
+  def valid_coordinate?(coordinate)
+    @cells.include?(coordinate)
   end
 
   def valid_placement?(ship, coordinate)
     coordinate.size == ship.length
+
+
   end
 
+  def linear?(coordinate)
+    if coordinates.count == 2
+      adjacent?(coordinates[0], coordinates[1])
+    else
+      (
+        adjacent?(
+          coodinates[0],
+          coodinates[1]
+        ) && adjacent?(
+          coodinates[1],
+          coodinates[2]
+        )
+      ) && (same_row?(coodinates) || same_column?(coodinates))
+    end
+  end
 end
