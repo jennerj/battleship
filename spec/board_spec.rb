@@ -27,19 +27,27 @@ RSpec.describe Board do
     expect(@board.valid_coordinate?("A22")).to eq(false)
   end
 
-  it 'checks if the length is valid' do
+  xit 'checks if the length is valid' do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to be(false)
     expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to be(false)
   end
 
-  it 'checks if the coordinates are consecutive' do
+  xit 'checks if the coordinates are consecutive' do
     expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A3"])).to eq(true)
     expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
     expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
-    expect9@board.valid_placement?(@submarine, ["C1", "C2"]).to eq(true)
+    expect(@board.valid_placement?(@submarine, ["C1", "C2"])).to eq(true)
   end
 
-  
+  it 'checks is two cells are adjacent in a row' do
+    expect(@board.row_adjacent?("A3", "A4")).to be(true)
+    expect(@board.row_adjacent?("B1", "B2")).to be(true)
+  end
+
+  it 'checks is two cells are adjacent in a column' do
+    expect(@board.column_adjacent?("A3", "B3")).to be(true)
+    expect(@board.column_adjacent?("C1", "D1")).to be(true)
+  end
 
 
 

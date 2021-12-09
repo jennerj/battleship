@@ -49,7 +49,16 @@ class Board
   end
 
   def adjacent?(cell_1, cell_2)
-    row_adjacent(cell_1, cell_2) ^ column_adjacent?(cell_1, cell_2)
+    row_adjacent?(cell_1, cell_2) ^ column_adjacent?(cell_1, cell_2)
   end
+
+  def row_adjacent?(cell_1, cell_2)
+    (cell_1[1].to_i - cell_2[1].to_i).abs == 1
+  end
+
+  def column_adjacent?(cell_1, cell_2)
+    (cell_1[0].ord - cell_2[0].ord).abs == 1
+  end
+
 
 end
