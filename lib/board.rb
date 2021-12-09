@@ -28,23 +28,23 @@ class Board
 
   def valid_placement?(ship, coordinate)
     coordinate.size == ship.length
-
+    linear?(coordinate.sort)
 
   end
 
   def linear?(coordinate)
-    if coordinates.count == 2
-      adjacent?(coordinates[0], coordinates[1])
+    if coordinate.count == 2
+      adjacent?(coordinate[0], coordinate[1])
     else
       (
         adjacent?(
-          coodinates[0],
-          coodinates[1]
+          coordinate[0],
+          coordinate[1]
         ) && adjacent?(
-          coodinates[1],
-          coodinates[2]
+          coordinate[1],
+          coordinate[2]
         )
-      ) && (same_row?(coodinates) || same_column?(coodinates))
+      ) && (same_row?(coordinate) || same_column?(coordinate))
     end
   end
 end
