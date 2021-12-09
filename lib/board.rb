@@ -47,4 +47,9 @@ class Board
       ) && (same_row?(coordinate) || same_column?(coordinate))
     end
   end
+
+  def adjacent?(cell_1, cell_2)
+    row_adjacent(cell_1, cell_2) ^ column_adjacent?(cell_1, cell_2)
+  end
+
 end
