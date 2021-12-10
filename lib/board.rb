@@ -74,4 +74,7 @@ class Board
       (coordinate[0][1] == coordinate[1][1]) && (coordinate[1][1] == coordinate[2][1])
     end
   end
+
+
+
 end
