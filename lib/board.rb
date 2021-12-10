@@ -74,4 +74,15 @@ class Board
       (coordinate[0][1] == coordinate[1][1]) && (coordinate[1][1] == coordinate[2][1])
     end
   end
+
+  def place(ship, coordinate)
+    @cells.keys.select do |key|
+      coordinate.each do |coord|
+        if coord == key
+          @cells[key].place_ship(ship)
+        end
+      end
+    end
+  end
+
 end
