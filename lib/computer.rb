@@ -11,4 +11,16 @@ class Computer
     @computer_ships = []
   end
 
+  #create letter variable equal to ["A", "B", "C", "D"] and then taking
+  #a random sample of the letter array
+  def letter_gen
+    letter = ("A".."D").to_a
+    letter.sample
+  end
+
+  def number_gen
+    number = ("1".."4").to_a
+    number.sample
+  end
+
 end
