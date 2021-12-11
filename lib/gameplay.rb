@@ -2,8 +2,7 @@ class Gameplay
   attr_reader :computer,
               :player
 
-  def initialize(skrrt)
-    @skrrt = skrrt
+  def initialize
     @computer = Computer.new
     @player = Player.new
   end
