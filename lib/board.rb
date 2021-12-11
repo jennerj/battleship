@@ -91,4 +91,17 @@ class Board
       end
     end
   end
+
+  def render(show = false)
+    rendered = '  1 2 3 4 '
+
+    rendered += @cells.each_value.map do |cell|
+      cell.render(show)
+    end.join(' ')
+    rendered.insert(10, "\nA ")
+    rendered.insert(21, "\nB ")
+    rendered.insert(32, "\nC ")
+    rendered.insert(43, "\nD ")
+    rendered += " \n"
+  end
 end

@@ -97,4 +97,26 @@ RSpec.describe Board do
     @board.place(@cruiser, %w[A1 A2 A3])
     expect(@board.not_overlapping?(%w[C1 B1])).to be true
   end
+
+  it 'returns a visual of the game board' do
+    expect(@board.render).to eq(
+      "  1 2 3 4 \n" +
+      "A . . . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+    )
+  end
+
+  it 'shows where the ship is on the board' do
+    @board.place(@cruiser, %w[A1 A2 A3])
+
+    expect(@board.render(true)).to eq(
+      "  1 2 3 4 \n" +
+      "A S S S . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+    )
+  end
 end
