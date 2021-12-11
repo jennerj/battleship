@@ -26,9 +26,18 @@ class Board
     @cells.include?(coordinate)
   end
 
-  def valid_placement?(ship, coordinate)
-    (coordinate.size == ship.length) &&
-      linear?(coordinate.sort)
+  def valid_placement?(ship, coordinates)
+    (coordinates.size == ship.length) &&
+      linear?(coordinates.sort) &&
+      not_overlapping?(coordinates)
+  end
+
+  def not_overlapping?(coordinates)
+    result = coordinates.map do |coordinate|
+      @cells[coordinate].empty?
+    end
+
+    result.all? == true
   end
 
   def linear?(coordinate)
@@ -78,11 +87,8 @@ class Board
   def place(ship, coordinate)
     @cells.keys.select do |key|
       coordinate.each do |coord|
-        if coord == key
-          @cells[key].place_ship(ship)
-        end
+        @cells[key].place_ship(ship) if coord == key
       end
     end
   end
-
 end

@@ -61,20 +61,20 @@ RSpec.describe Board do
   end
 
   it 'checks to make sure two adjacent cells are not diagonal' do
-    expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to be(false)
-    expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to be(false)
+    expect(@board.valid_placement?(@submarine, %w[C2 D3])).to be(false)
+    expect(@board.valid_placement?(@cruiser, %w[A1 B2 C3])).to be(false)
   end
 
   it 'checks validity of placement after all the previous tests' do
-    expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to be(true)
-    expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to be(true)
+    expect(@board.valid_placement?(@submarine, %w[A1 A2])).to be(true)
+    expect(@board.valid_placement?(@cruiser, %w[B1 C1 D1])).to be(true)
   end
 
   it 'places ships on the board' do
-    cell_1 = @board.cells["A1"]
-    cell_2 = @board.cells["A2"]
-    cell_3 = @board.cells["A3"]
-    @board.place(@cruiser, ["A1", "A2", "A3"])
+    cell_1 = @board.cells['A1']
+    cell_2 = @board.cells['A2']
+    cell_3 = @board.cells['A3']
+    @board.place(@cruiser, %w[A1 A2 A3])
     expect(cell_1.ship).to eq(@cruiser)
     expect(cell_2.ship).to eq(@cruiser)
     expect(cell_3.ship).to eq(@cruiser)
@@ -83,5 +83,18 @@ RSpec.describe Board do
     expect(cell_3.ship).to eq(cell_2.ship)
   end
 
+  it 'checks if ships overlap' do
+    @board.place(@cruiser, %w[A1 A2 A3])
+    expect(@board.valid_placement?(@submarine, %w[A1 B1])).to be false
+  end
 
+  it 'invalid coordinate with overlapping ships' do
+    @board.place(@cruiser, %w[A1 A2 A3])
+    expect(@board.not_overlapping?(%w[A1 B1])).to be false
+  end
+
+  it 'checks to see overlapping' do
+    @board.place(@cruiser, %w[A1 A2 A3])
+    expect(@board.not_overlapping?(%w[C1 B1])).to be true
+  end
 end
