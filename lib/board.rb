@@ -26,9 +26,18 @@ class Board
     @cells.include?(coordinate)
   end
 
-  def valid_placement?(ship, coordinate)
-    (coordinate.size == ship.length) &&
-      linear?(coordinate.sort)
+  def valid_placement?(ship, coordinates)
+    (coordinates.size == ship.length) &&
+      linear?(coordinates.sort) &&
+      not_overlapping?(coordinates)
+  end
+
+  def not_overlapping?(coordinates)
+    result = coordinates.map do |coordinate|
+      @cells[coordinate].empty?
+    end
+
+    result.all? == true
   end
 
   def linear?(coordinate)
@@ -78,11 +87,21 @@ class Board
   def place(ship, coordinate)
     @cells.keys.select do |key|
       coordinate.each do |coord|
-        if coord == key
-          @cells[key].place_ship(ship)
-        end
+        @cells[key].place_ship(ship) if coord == key
       end
     end
   end
 
+  def render(show = false)
+    rendered = '  1 2 3 4 '
+
+    rendered += @cells.each_value.map do |cell|
+      cell.render(show)
+    end.join(' ')
+    rendered.insert(10, "\nA ")
+    rendered.insert(21, "\nB ")
+    rendered.insert(32, "\nC ")
+    rendered.insert(43, "\nD ")
+    rendered += " \n"
+  end
 end
