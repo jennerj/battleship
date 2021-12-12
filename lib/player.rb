@@ -31,4 +31,8 @@ class Player
       ship.sunk?
     end
   end
+
+  def clear_board!
+    @board = Board.new
+  end
 end

@@ -8,6 +8,8 @@ RSpec.describe Player do
     @player = Player.new
     @ship = Ship.new('Cruiser', 3)
     @ship_with_no_health = Ship.new('Crusier', 0)
+    @cell_1 = 'A1'
+    @cell_2 = 'A2'
   end
 
   it 'exists' do
@@ -37,5 +39,13 @@ RSpec.describe Player do
   it 'returns true when all ships are sunk' do
     @player.player_ships << @ship_with_no_health
     expect(@player.all_ships_sunk?).to be true
+  end
+
+  it 'returns a cleared board after a game over' do
+    @player.player_board.place(@ship, [@cell, @cell_2])
+    old_ships = @player.player_board.ships
+    @player.clear_board!
+    new_ships = @player.player_board.ships
+    expect(new_ships).not_to include(old_ships)
   end
 end
