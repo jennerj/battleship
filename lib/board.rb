@@ -1,5 +1,5 @@
 class Board
-  attr_reader :cells
+  attr_reader :cells, :ships
 
   def initialize
     @cells = {
@@ -20,6 +20,7 @@ class Board
       'D3' => Cell.new('D3'),
       'D4' => Cell.new('D4')
     }
+    @ships = []
   end
 
   def valid_coordinate?(coordinate)
