@@ -48,4 +48,9 @@ RSpec.describe Computer do
     expect(@computer.computer_board.cells.empty?).to eq(false)
   end
 
+  it 'can successfully place a cruiser' do
+    @computer.place_cruiser
+    expect(@computer.computer_board.cells.empty?).to eq(false)
+  end
+
 end

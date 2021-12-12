@@ -26,13 +26,25 @@ class Computer
   end
 
   def place_submarine
-    sub_coordinates = []
-    until sub_coordinates.length == @submarine.length do
-      sub_coordinates << combined_string
+    submarine_coordinates = []
+    until submarine_coordinates.length == @submarine.length do
+      submarine_coordinates << combined_string
     end
-    sub_coordinates.sort
-    if @computer_board.valid_placement?(@submarine, sub_coordinates) == true
-      @computer_board.place(@submarine, sub_coordinates)
+    submarine_coordinates.sort
+    if @computer_board.valid_placement?(@submarine, submarine_coordinates) == true
+      @computer_board.place(@submarine, submarine_coordinates)
     end
   end
+
+  def place_cruiser
+    cruiser_coorinates = []
+    until cruiser_coorinates.length == @cruiser.length do
+      cruiser_coorinates << combined_string
+    end
+    cruiser_coorinates.sort
+    if @computer_board.valid_placement?(@cruiser, cruiser_coorinates) == true
+      @computer_board.place(@cruiser, cruiser_coorinates)
+    end
+  end
+
 end
