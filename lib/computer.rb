@@ -23,4 +23,9 @@ class Computer
     number.sample
   end
 
+  def combined_string
+    number_gen + letter_gen
+  end
+
+
 end

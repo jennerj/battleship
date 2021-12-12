@@ -28,4 +28,19 @@ RSpec.describe Computer do
     expect(@computer.number_gen).to be_a(String)
   end
 
+  it 'can generate and random number and letter into a string' do
+    expect(@computer.combined_string.length).to eq(2)
+    expect(@computer.combined_string).to be_a(String)
+  end
+
+  it 'checks to see if the validity of a combined string is true' do
+    combined_string = "B3"
+    expect(@computer.computer_board.valid_coordinate?(combined_string)).to eq(true)
+  end
+
+  it 'checks to see if the validity of a combined string is false' do
+    combined_string = "G6"
+    expect(@computer.computer_board.valid_coordinate?(combined_string)).to eq(false)
+  end
+
 end
