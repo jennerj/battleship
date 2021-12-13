@@ -12,6 +12,11 @@ class Player
     @player_ships = []
   end
 
+  def player_setup
+    puts player_setup_message
+    place_ship
+  end
+
   def player_setup_message
     <<~PRMT
       My ships are placed on the grid!
@@ -24,6 +29,53 @@ class Player
         C . . . .
         D . . . .
     PRMT
+  end
+
+  def place_ship
+    place_cruiser
+    place_submarine
+  end
+
+  def place_cruiser
+    cruiser_placed = false
+    until cruiser_placed
+      puts 'Enter the coordinates for the Cruiser (3 spaces):'
+      user_placement = gets.to_s.chomp
+      ship = Ship.new('Cruiser', 3)
+      coordinates = user_placement.split
+
+      if player_board.valid_placement?(ship, coordinates)
+        player_board.place(ship, coordinates)
+        cruiser_placed = true
+        player_ships << ship
+      else
+        puts 'Invalid placement, try again.'
+      end
+    end
+
+    puts player_board.render(true)
+  end
+
+  def place_submarine
+    submarine_placed = false
+    until submarine_placed
+      puts 'Enter the coordinates for the Submarine (2 spaces):'
+      user_placement = gets.to_s.chomp
+      ship = Ship.new('Submarine', 2)
+      coordinates = user_placement.split
+
+      if player_board.valid_placement?(ship, coordinates)
+        player_board.place(ship, coordinates)
+        submarine_placed = true
+        player_ships << ship
+      else
+        puts 'Invalid placement, try again.'
+      end
+
+      puts 'Set sails to victory! Your board looks like this:'
+      puts ''
+      puts player_board.render(true)
+    end
   end
 
   def all_ships_sunk?
