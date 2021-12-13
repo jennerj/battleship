@@ -63,4 +63,8 @@ class Gameplay
 
     end_game
   end
+
+  def game_over?
+    player.all_ships_sunk? || computer.all_ships_sunk?
+  end
 end

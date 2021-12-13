@@ -1,12 +1,14 @@
 class Computer
   attr_reader :cruiser,
               :submarine,
-              :computer_board
+              :computer_board,
+              :computer_ships
 
   def initialize
     @cruiser = Ship.new('cruiser', 3)
     @submarine = Ship.new('submarine', 2)
     @computer_board = Board.new
+    @computer_ships = []
   end
 
   def computer_setup
@@ -37,6 +39,7 @@ class Computer
     if @computer_board.valid_placement?(@submarine, submarine_coordinates) == true
       @computer_board.place(@submarine, submarine_coordinates)
     end
+    computer_ships << submarine_coordinates
   end
 
   def place_cruiser
@@ -45,6 +48,13 @@ class Computer
     cruiser_coordinates.sort
     if @computer_board.valid_placement?(@cruiser, cruiser_coordinates) == true
       @computer_board.place(@cruiser, cruiser_coordinates)
+    end
+    computer_ships << cruiser_coordinates
+  end
+
+  def all_ships_sunk?
+    computer_ships.all? do |ship|
+      ship.sunk?
     end
   end
 end
