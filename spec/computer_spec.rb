@@ -1,12 +1,12 @@
+require './lib/board'
 require './lib/ship'
 require './lib/cell'
-require './lib/board'
 require './lib/computer'
 
 RSpec.describe Computer do
   before(:each) do
     @computer = Computer.new
-    # @ship = Ship.new
+    @board = Board.new
   end
 
   it 'exists' do
@@ -42,5 +42,17 @@ RSpec.describe Computer do
     combined_string = "G6"
     expect(@computer.computer_board.valid_coordinate?(combined_string)).to eq(false)
   end
+
+  it 'can successfully place a submarine' do
+    @computer.place_submarine
+    expect(@computer.computer_board.cells.empty?).to eq(false)
+  end
+
+  it 'can successfully place a cruiser' do
+    @computer.place_cruiser
+    expect(@computer.computer_board.cells.empty?).to eq(false)
+  end
+
+  # it 'can place a full submarine' do
 
 end

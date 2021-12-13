@@ -1,14 +1,12 @@
 class Computer
   attr_reader :cruiser,
               :submarine,
-              :computer_board,
-              :ship_array
+              :computer_board
 
   def initialize
     @cruiser = Ship.new('cruiser', 3)
     @submarine = Ship.new('submarine', 2)
     @computer_board = Board.new
-    @computer_ships = []
   end
 
   #create letter variable equal to ["A", "B", "C", "D"] and then taking
@@ -24,8 +22,29 @@ class Computer
   end
 
   def combined_string
-    number_gen + letter_gen
+    letter_gen + number_gen
   end
 
+  def place_submarine
+    submarine_coordinates = []
+    until submarine_coordinates.length == @submarine.length do
+      submarine_coordinates << combined_string
+    end
+    submarine_coordinates.sort
+    if @computer_board.valid_placement?(@submarine, submarine_coordinates) == true
+      @computer_board.place(@submarine, submarine_coordinates)
+    end
+  end
+
+  def place_cruiser
+    cruiser_coordinates = []
+    until cruiser_coordinates.length == @cruiser.length do
+      cruiser_coordinates << combined_string
+    end
+    cruiser_coordinates.sort
+    if @computer_board.valid_placement?(@cruiser, cruiser_coordinates) == true
+      @computer_board.place(@cruiser, cruiser_coordinates)
+    end
+  end
 
 end
