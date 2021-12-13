@@ -22,7 +22,7 @@ class Computer
   end
 
   def combined_string
-    number_gen + letter_gen
+    letter_gen + number_gen
   end
 
   def place_submarine
@@ -37,13 +37,13 @@ class Computer
   end
 
   def place_cruiser
-    cruiser_coorinates = []
-    until cruiser_coorinates.length == @cruiser.length do
-      cruiser_coorinates << combined_string
+    cruiser_coordinates = []
+    until cruiser_coordinates.length == @cruiser.length do
+      cruiser_coordinates << combined_string
     end
-    cruiser_coorinates.sort
-    if @computer_board.valid_placement?(@cruiser, cruiser_coorinates) == true
-      @computer_board.place(@cruiser, cruiser_coorinates)
+    cruiser_coordinates.sort
+    if @computer_board.valid_placement?(@cruiser, cruiser_coordinates) == true
+      @computer_board.place(@cruiser, cruiser_coordinates)
     end
   end
 

@@ -53,4 +53,6 @@ RSpec.describe Computer do
     expect(@computer.computer_board.cells.empty?).to eq(false)
   end
 
+  # it 'can place a full submarine' do
+
 end

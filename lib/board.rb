@@ -42,8 +42,10 @@ class Board
   end
 
   def linear?(coordinate)
+    #if 2 coords
     if coordinate.count == 2
       adjacent?(coordinate[0], coordinate[1])
+      #if 3 coords
     else
       (
         adjacent?(
@@ -53,6 +55,7 @@ class Board
           coordinate[1],
           coordinate[2]
         )
+        # finally check if they are in same row or same column
       ) && (same_row?(coordinate) || same_column?(coordinate))
     end
   end
@@ -71,8 +74,10 @@ class Board
 
   def same_row?(coordinate)
     if coordinate.length == 2
+      #A1(A) == A2(A)
       coordinate[0][0] == coordinate[1][0]
     else
+      #A1(A) == A2(2) && A2(A) == A3(A)
       (coordinate[0][0] == coordinate[1][0]) && (coordinate[1][0] == coordinate[2][0])
     end
   end
