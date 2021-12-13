@@ -9,6 +9,7 @@ class Gameplay
   def start
     puts greeting
     puts play_prompt
+    user_input = gets.chomp
   end
 
   def greeting
@@ -19,4 +20,10 @@ class Gameplay
   def play_prompt
     'Enter p to play. Enter q to quit.'
   end
+
+  def user_input
+    if 'p'
+      puts 'Yo ho ho, All hands on deck!'
+      
+ end
 end
