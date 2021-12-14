@@ -35,36 +35,47 @@ class Gameplay
 
   def turn
     until game_over?
-      valid_shot = false
-
-      puts 'Enter the coordinate for your shot:'
-      until valid_shot
-        user_input = gets.chomp
-        if valid_shot?(user_input)
-          valid_shot = true
-        elsif repeat_shot?(user_input)
-          puts 'You have already fired on that coordinate. TRY AGAIN:'
-        else
-          puts 'Please enter a valid coordinate:'
-        end
-      end
-
-      computer.computer_board.fire_upon(user_input)
-
-      shot = player.player_board.cells.keys.sample
-
-      shot = player.player_board.cells.keys.sample while player.player_board.cells[shot].fired_upon?
-
-      player.player_board.fire_upon(shot)
-
-      computer.display_board
-      player.display_board
+      computer.computer_board.fire_upon(player_shot)
+      # avoid violating law of demeter
+      return_fire(player.player_board)
+      display_game_state
     end
 
     end_game
   end
 
+  def valid_shot?(shot); end
+
   def game_over?
     player.all_ships_sunk? || computer.all_ships_sunk?
+  end
+
+  def player_shot
+    valid_shot = false
+
+    puts 'Enter the coordinate for your shot:'
+    until valid_shot
+      user_input = gets.chomp
+      if valid_shot?(user_input)
+        valid_shot = true
+      elsif repeat_shot?(user_input)
+        puts 'You have already fired on that coordinate. TRY AGAIN:'
+      else
+        puts 'Please enter a valid coordinate:'
+      end
+    end
+  end
+
+  def return_fire(board)
+    shot = board.cells.keys.sample
+
+    shot = board.cells.keys.sample while board.cells[shot].fired_upon?
+
+    board.fire_upon(shot)
+  end
+
+  def display_game_state
+    computer.display_board
+    player.display_board
   end
 end

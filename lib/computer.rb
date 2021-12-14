@@ -39,7 +39,7 @@ class Computer
     if @computer_board.valid_placement?(@submarine, submarine_coordinates) == true
       @computer_board.place(@submarine, submarine_coordinates)
     end
-    computer_ships << submarine_coordinates
+    computer_ships << @submarine
   end
 
   def place_cruiser
@@ -49,7 +49,7 @@ class Computer
     if @computer_board.valid_placement?(@cruiser, cruiser_coordinates) == true
       @computer_board.place(@cruiser, cruiser_coordinates)
     end
-    computer_ships << cruiser_coordinates
+    computer_ships << @cruiser
   end
 
   def all_ships_sunk?
