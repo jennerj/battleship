@@ -34,25 +34,24 @@ RSpec.describe Computer do
   end
 
   it 'checks to see if the validity of a combined string is true' do
-    combined_string = "B3"
+    combined_string = 'B3'
     expect(@computer.computer_board.valid_coordinate?(combined_string)).to eq(true)
   end
 
   it 'checks to see if the validity of a combined string is false' do
-    combined_string = "G6"
+    combined_string = 'G6'
     expect(@computer.computer_board.valid_coordinate?(combined_string)).to eq(false)
   end
 
   it 'can successfully place a submarine' do
     @computer.place_submarine
-    expect(@computer.computer_board.cells.empty?).to eq(false)
+    expect(@computer.computer_ships).to include(@computer.submarine)
   end
 
   it 'can successfully place a cruiser' do
     @computer.place_cruiser
-    expect(@computer.computer_board.cells.empty?).to eq(false)
+    expect(@computer.computer_ships).to include(@computer.cruiser)
   end
 
   # it 'can place a full submarine' do
-
 end

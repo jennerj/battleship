@@ -85,6 +85,11 @@ class Player
   end
 
   def clear_board!
-    @board = Board.new
+    @player_board = Board.new
+  end
+
+  def display_board
+    puts '==============PLAYER BOARD=============='
+    puts player_board.render(true)
   end
 end

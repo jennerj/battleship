@@ -1,5 +1,5 @@
 class Board
-  attr_reader :cells, :ships
+  attr_reader :cells, :ships, :fired_upon
 
   def initialize
     @cells = {
@@ -42,10 +42,10 @@ class Board
   end
 
   def linear?(coordinate)
-    #if 2 coords
+    # if 2 coords
     if coordinate.count == 2
       adjacent?(coordinate[0], coordinate[1])
-      #if 3 coords
+      # if 3 coords
     else
       (
         adjacent?(
@@ -74,10 +74,10 @@ class Board
 
   def same_row?(coordinate)
     if coordinate.length == 2
-      #A1(A) == A2(A)
+      # A1(A) == A2(A)
       coordinate[0][0] == coordinate[1][0]
     else
-      #A1(A) == A2(2) && A2(A) == A3(A)
+      # A1(A) == A2(2) && A2(A) == A3(A)
       (coordinate[0][0] == coordinate[1][0]) && (coordinate[1][0] == coordinate[2][0])
     end
   end
@@ -109,5 +109,9 @@ class Board
     rendered.insert(32, "\nC ")
     rendered.insert(43, "\nD ")
     rendered += " \n"
+  end
+
+  def fire_upon(coordinate)
+    @cells[coordinate].fire_upon
   end
 end
