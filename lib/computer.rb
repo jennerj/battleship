@@ -57,4 +57,13 @@ class Computer
       ship.sunk?
     end
   end
+
+  def display_board
+    puts '=============COMPUTER BOARD============='
+    puts computer_board.render
+  end
+
+  def clear_board!
+    @computer_board = Board.new
+  end
 end
