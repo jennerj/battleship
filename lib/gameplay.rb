@@ -26,7 +26,7 @@ class Gameplay
   end
 
   def greeting
-    'Greetings land lovers! Today you are at sea and must help protect your country!
+    'Greetings landlubbers! Today you are at sea and must help protect your country!
     Welcome to BATTLESHIP'
   end
 
@@ -93,9 +93,18 @@ class Gameplay
 
   def end_game
     if player.all_ships_sunk?
-      puts 'I won!'
+      puts 'You have been sunk! Better swim to shore!'
     elsif computer.all_ships_sunk?
-      puts 'You won!'
+      puts 'You sunk all of the enemies ships!
+            |    |    |
+            )_)  )_)  )_)
+           )___))___))___)\
+          )____)____)_____)\\
+        _____|____|____|____\\\__
+---------\                   /---------
+ ^^^^^ ^^^^^^^^^^^^^^^^^^^^^
+   ^^^^      ^^^^     ^^^    ^^
+        ^^^^      ^^^'
     end
     clear_boards!
     start

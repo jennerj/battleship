@@ -22,7 +22,7 @@ class Player
       My ships are placed on the grid!
       Now it's your turn to lay out your two ships.
       The Cruiser is three units long and the Submarine is two units long.
-      LETSKITTTTITT!!!
+      LETS GO!!!
           1 2 3 4
         A . . . .
         B . . . .
@@ -39,7 +39,7 @@ class Player
   def place_cruiser
     cruiser_placed = false
     until cruiser_placed
-      puts 'Enter the coordinates for the Cruiser (3 spaces):'
+      puts 'Enter the coordinates for the Cruiser (3 spaces ex. A1 B1 C1):'
       user_placement = gets.to_s.chomp
       ship = Ship.new('Cruiser', 3)
       coordinates = user_placement.split
@@ -59,7 +59,7 @@ class Player
   def place_submarine
     submarine_placed = false
     until submarine_placed
-      puts 'Enter the coordinates for the Submarine (2 spaces):'
+      puts 'Enter the coordinates for the Submarine (2 spaces ex. D1 D2):'
       user_placement = gets.to_s.chomp
       ship = Ship.new('Submarine', 2)
       coordinates = user_placement.split

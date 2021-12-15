@@ -19,7 +19,7 @@ RSpec.describe Gameplay do
   end
 
   it 'has a greeting for the start of the game' do
-    expect(@gameplay.greeting).to eq('Greetings land lovers! Today you are at sea and must help protect your country!
+    expect(@gameplay.greeting).to eq('Greetings landlubbers! Today you are at sea and must help protect your country!
     Welcome to BATTLESHIP')
   end
 end
