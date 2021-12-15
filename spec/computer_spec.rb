@@ -29,8 +29,8 @@ RSpec.describe Computer do
   end
 
   it 'can generate and random number and letter into a string' do
-    expect(@computer.combined_string.length).to eq(2)
-    expect(@computer.combined_string).to be_a(String)
+    expect(@computer.random_coordinate.length).to eq(1)
+    expect(@computer.random_coordinate).to be_a(Hash)
   end
 
   it 'checks to see if the validity of a combined string is true' do
@@ -53,5 +53,4 @@ RSpec.describe Computer do
     expect(@computer.computer_ships).to include(@computer.cruiser)
   end
 
-  # it 'can place a full submarine' do
 end
