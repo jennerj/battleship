@@ -41,25 +41,25 @@ class Board
     result.all? == true
   end
 
-  def linear?(coordinate)
+  def linear?(coordinates)
     # if 2 coords
-    if coordinate.count == 2
-      adjacent?(coordinate[0], coordinate[1])
+    if coordinates.count == 2
+      adjacent?(coordinates[0], coordinates[1])
       # if 3 coords
     else
       (
         adjacent?(
-          coordinate[0],
-          coordinate[1]
+          coordinates[0],
+          coordinates[1]
         ) && adjacent?(
-          coordinate[1],
-          coordinate[2]
+          coordinates[1],
+          coordinates[2]
         )
         # finally check if they are in same row or same column
-      ) && (same_row?(coordinate) || same_column?(coordinate))
+      ) && (same_row?(coordinates) || same_column?(coordinates))
     end
   end
-
+  #*cells doesnt know how many to accept
   def adjacent?(cell_1, cell_2)
     row_adjacent?(cell_1, cell_2) ^ column_adjacent?(cell_1, cell_2)
   end
@@ -93,6 +93,7 @@ class Board
   def place(ship, coordinate)
     @cells.keys.select do |key|
       coordinate.each do |coord|
+        # require "pry"; binding.pry
         @cells[key].place_ship(ship) if coord == key
       end
     end

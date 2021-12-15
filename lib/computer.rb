@@ -1,14 +1,14 @@
 class Computer
   attr_reader :cruiser,
-              :submarine,
-              :computer_board,
-              :computer_ships
+  :submarine,
+  :computer_board,
+  :computer_ships
 
   def initialize
     @cruiser = Ship.new('cruiser', 3)
     @submarine = Ship.new('submarine', 2)
     @computer_board = Board.new
-    @computer_ships = []
+    @computer_ships = [@cruiser, @submarine]
   end
 
   def computer_setup
@@ -28,33 +28,36 @@ class Computer
     number.sample
   end
 
-  def combined_string
-    letter_gen + number_gen
+  def random_coordinate
+    string_cell = letter_gen + number_gen
+    cell = @computer_board.cells.select do |key, cell|
+      key == string_cell
+    end
+    if !cell[string_cell].empty?
+      random_coordinate
+    end
+    cell
   end
 
   def place_submarine
-    submarine_coordinates = []
-    submarine_coordinates << combined_string until submarine_coordinates.length == @submarine.length
-    submarine_coordinates.sort
-    if @computer_board.valid_placement?(@submarine, submarine_coordinates) == true
-      @computer_board.place(@submarine, submarine_coordinates)
+    submarine_coordinates = [random_coordinate.keys, random_coordinate.keys].flatten
+    until @computer_board.valid_placement?(@submarine, submarine_coordinates) do
+      submarine_coordinates = [random_coordinate.keys, random_coordinate.keys].flatten
     end
-    computer_ships << @submarine
+    @computer_board.place(@submarine, submarine_coordinates)
   end
 
   def place_cruiser
-    cruiser_coordinates = []
-    cruiser_coordinates << combined_string until cruiser_coordinates.length == @cruiser.length
-    cruiser_coordinates.sort
-    if @computer_board.valid_placement?(@cruiser, cruiser_coordinates) == true
-      @computer_board.place(@cruiser, cruiser_coordinates)
+    cruiser_coordinates = [random_coordinate.keys, random_coordinate.keys, random_coordinate.keys].flatten
+    until @computer_board.valid_placement?(@cruiser, cruiser_coordinates) do
+      cruiser_coordinates = [random_coordinate.keys, random_coordinate.keys, random_coordinate.keys].flatten
     end
-    computer_ships << @cruiser
+    @computer_board.place(@cruiser, cruiser_coordinates)
   end
 
   def all_ships_sunk?
     computer_ships.all? do |ship|
-      ship.sunk?
+      ship.sunk? == true
     end
   end
 

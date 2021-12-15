@@ -13,6 +13,7 @@ class Gameplay
 
     if user_input == 'p'
       puts 'Yo ho ho, All hands on deck!'
+      # require 'pry':binding.pry
       computer.computer_setup
       player.player_setup
       turn
@@ -34,9 +35,9 @@ class Gameplay
   end
 
   def turn
+    # require "pry"; binding.pry
     until game_over?
       valid_shot = false
-
       puts 'Enter the coordinate for your shot:'
       until valid_shot
         player_shot = gets.chomp
