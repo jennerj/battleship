@@ -9,7 +9,7 @@ class Gameplay
   def start
     puts greeting
     puts play_prompt
-    user_input = gets.chomp
+    user_input = gets.chomp.downcase
 
     if user_input == 'p'
       puts 'Yo ho ho, All hands on deck!'
@@ -26,7 +26,7 @@ class Gameplay
   end
 
   def greeting
-    'Greetings land lovers! Today you are at sea and must help protect your country!
+    'Greetings landlubbers! Today you are at sea and must help protect your country!
     Welcome to BATTLESHIP'
   end
 
@@ -88,14 +88,23 @@ class Gameplay
   end
 
   def repeat_shot?(player_shot)
-    computer.computer_board.valid_coordinate?(player_shot) && computer.computer_board.cells[player_shot].fired_upon
+    computer.computer_board.valid_coordinate?(player_shot) && computer.computer_board.cells[player_shot].fired_upon?
   end
 
   def end_game
     if player.all_ships_sunk?
-      puts 'I won!'
+      puts 'You have been sunk! Better swim to shore!'
     elsif computer.all_ships_sunk?
-      puts 'You won!'
+      puts 'You sunk all of the enemies ships!
+            |    |    |
+            )_)  )_)  )_)
+           )___))___))___)\
+          )____)____)_____)\\
+        _____|____|____|____\\\__
+---------\                   /---------
+ ^^^^^ ^^^^^^^^^^^^^^^^^^^^^
+   ^^^^      ^^^^     ^^^    ^^
+        ^^^^      ^^^'
     end
     clear_boards!
     start

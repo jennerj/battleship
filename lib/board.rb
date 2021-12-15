@@ -37,7 +37,6 @@ class Board
     result = coordinates.map do |coordinate|
       @cells[coordinate].empty?
     end
-
     result.all? == true
   end
 

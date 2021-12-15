@@ -21,7 +21,7 @@ RSpec.describe Player do
       My ships are placed on the grid!
       Now it's your turn to lay out your two ships.
       The Cruiser is three units long and the Submarine is two units long.
-      LETSKITTTTITT!!!
+      LETS GO!!!
           1 2 3 4
         A . . . .
         B . . . .

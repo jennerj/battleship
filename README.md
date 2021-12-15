@@ -1,2 +1,1 @@
-fix abs value for row and column adjacent
-fix gets.chomp to convert user answer to capital
+To launch game make sure you are in the battleship parent directory and then run "ruby runner.rb" without the quotes and run it in the terminal. 
