@@ -9,7 +9,7 @@ class Gameplay
   def start
     puts greeting
     puts play_prompt
-    user_input = gets.chomp
+    user_input = gets.chomp.downcase
 
     if user_input == 'p'
       puts 'Yo ho ho, All hands on deck!'
@@ -88,7 +88,7 @@ class Gameplay
   end
 
   def repeat_shot?(player_shot)
-    computer.computer_board.valid_coordinate?(player_shot) && computer.computer_board.cells[player_shot].fired_upon
+    computer.computer_board.valid_coordinate?(player_shot) && computer.computer_board.cells[player_shot].fired_upon?
   end
 
   def end_game
